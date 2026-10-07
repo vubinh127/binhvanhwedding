@@ -3,6 +3,13 @@ body {
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family: 'UVN';
+  src: url('./fonts/UVNHoaTay1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +18,7 @@ body {
 
 body {
   background: #e6e2da;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', serif;
   color: #6e6247;
   font-size: 17px;
   line-height: 1.6;
@@ -26,7 +33,7 @@ body {
 }
 
 .script {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'UVN', sans-serif;
   font-weight: 500;
 }
 
@@ -75,6 +82,7 @@ section {
   font-size: 58px;
   font-weight: 500;
   line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .hero .date {
@@ -282,6 +290,7 @@ section {
 }
 
 .mono {
+  font-family: "Puppies Play", cursive;
   font-size: 64px;
   line-height: 1;
 }
@@ -328,8 +337,9 @@ section {
 
 .pol figcaption {
   position: absolute;
-  font-size: 20px;
+  font-size: 32px;
   width: 100%;
+  font-family: 'UVN', sans-serif;
 }
 
 .pol.left figcaption {
@@ -347,6 +357,7 @@ section {
 .pol figcaption span {
   display: block;
   font-size: 22px;
+  line-height: 1;
   color: #b9ae92;
 }
 
@@ -1119,11 +1130,27 @@ section {
     font-size: 24px;
   }
 
+  .pol figcaption {
+    font-size: 30px;
+  }
+  
   .pol.right figcaption {
     top: 85%;
+    right: 80%;
   }
 
   .pol.left figcaption {
     top: 10%;
+    left: 80%;
   }
+}
+
+.swal2-top-end {
+  width:240px !important;
+}
+
+.swal2-toast div:where(.swal2-html-container),
+.swal2-toast h2:where(.swal2-title) {
+  margin: 3px 3px 0!important;
+  font-size: 14px !important;
 }

@@ -199,20 +199,52 @@ document.getElementById('gift-btn').addEventListener('click', function () {
 
 document.addEventListener('contextmenu', function (e) {
   e.preventDefault();
-  alert('Nàoooo! Không được tò mò !!!');
+  Swal.fire({
+    title: 'Nàoooo!',
+    text: 'Không được tò mò !!!',
+    icon: 'warning',
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000
+  });
 });
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'F12' || e.keyCode === 123) {
     e.preventDefault();
-    alert('Nàoooo! Không được tò mò !!!');
+    Swal.fire({
+      title: 'Nàoooo!',
+      text: 'Không được tò mò !!!',
+      icon: 'warning',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
   if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
     e.preventDefault();
-    alert('Nàoooo! Không được tò mò !!!');
+    Swal.fire({
+      title: 'Nàoooo!',
+      text: 'Không được tò mò !!!',
+      icon: 'warning',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
   if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
     e.preventDefault();
-    alert('Nàoooo! Không được tò mò !!!');
+    Swal.fire({
+      title: 'Nàoooo!',
+      text: 'Không được tò mò !!!',
+      icon: 'warning',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
 });
