@@ -1,19 +1,17 @@
-// ===== Intro & Music =====
 var introOverlay = document.getElementById('intro-overlay');
 var bgMusic = document.getElementById('bg-music');
 var musicToggle = document.getElementById('music-toggle');
 var musicIcon = musicToggle.querySelector('.music-icon');
 
-// Ngăn cuộn trang khi chưa mở thiệp
 document.body.style.overflow = 'hidden';
 
-introOverlay.addEventListener('click', function() {
+introOverlay.addEventListener('click', function () {
   introOverlay.classList.add('hidden');
   document.body.style.overflow = ''; // Cho phép cuộn lại
-  bgMusic.play().catch(function(e) { console.log('Autoplay prevented'); });
+  bgMusic.play().catch(function (e) { console.log('Autoplay prevented'); });
 });
 
-musicToggle.addEventListener('click', function() {
+musicToggle.addEventListener('click', function () {
   if (bgMusic.paused) {
     bgMusic.play();
     musicIcon.classList.remove('muted');
@@ -98,9 +96,9 @@ function renderWishes() {
     li.innerHTML =
       '<span class="wish-avatar">' + esc(w.name.charAt(0).toUpperCase()) + '</span>' +
       '<div class="wish-body">' +
-        '<b>' + esc(w.name) + '</b>' +
-        '<p>' + esc(w.message || '') + '</p>' +
-        '<time>' + formatDate(w.created_at) + '</time>' +
+      '<b>' + esc(w.name) + '</b>' +
+      '<p>' + esc(w.message || '') + '</p>' +
+      '<time>' + formatDate(w.created_at) + '</time>' +
       '</div>';
     wishList.appendChild(li);
   });
@@ -191,4 +189,24 @@ document.getElementById('rsvp-form').addEventListener('submit', async function (
 document.getElementById('gift-btn').addEventListener('click', function () {
   var box = document.getElementById('gift-box');
   box.hidden = !box.hidden;
+});
+
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  alert('Nàoooo! Không được tò mò !!!');
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+    alert('Nàoooo! Không được tò mò !!!');
+  }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+    e.preventDefault();
+    alert('Nàoooo! Không được tò mò !!!');
+  }
+  if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+    e.preventDefault();
+    alert('Nàoooo! Không được tò mò !!!');
+  }
 });

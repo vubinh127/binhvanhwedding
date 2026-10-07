@@ -1,3 +1,8 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,6 +15,7 @@ body {
   color: #6e6247;
   font-size: 17px;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .page {
@@ -173,7 +179,7 @@ section {
 }
 
 .info .name {
-  font-size: 54px;
+  font-size: 43px;
   line-height: 1.1;
 }
 
@@ -256,7 +262,7 @@ section {
 .timeline ul {
   position: relative;
   list-style: none;
-  margin: 8px 0 0 90px;
+  margin: 8px 0 0 10px;
 }
 
 .timeline li {
@@ -329,11 +335,13 @@ section {
 .pol.left figcaption {
   left: 110%;
   top: 40%;
+  transform: rotate(6deg);
 }
 
 .pol.right figcaption {
   right: 110%;
   top: 40%;
+  transform: rotate(-5deg);
 }
 
 .pol figcaption span {
@@ -475,8 +483,15 @@ section {
 }
 
 @keyframes fadeInGift {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .gift-cards {
@@ -542,9 +557,18 @@ section {
   transition: color 0.3s;
 }
 
-.status.sending { color: #a89a76; }
-.status.success  { color: #7a9e6e; font-weight: 600; }
-.status.error    { color: #b96e6e; }
+.status.sending {
+  color: #a89a76;
+}
+
+.status.success {
+  color: #7a9e6e;
+  font-weight: 600;
+}
+
+.status.error {
+  color: #b96e6e;
+}
 
 /* Wishes */
 .wishes {
@@ -560,7 +584,8 @@ section {
 
 .wish-container {
   margin-top: 16px;
-  max-height: calc(5 * 110px); /* ~5 thẻ lời chúc */
+  max-height: calc(5 * 110px);
+  /* ~5 thẻ lời chúc */
   overflow-y: auto;
   scroll-behavior: smooth;
   padding-right: 4px;
@@ -570,14 +595,17 @@ section {
 .wish-container::-webkit-scrollbar {
   width: 4px;
 }
+
 .wish-container::-webkit-scrollbar-track {
   background: #ece8e0;
   border-radius: 4px;
 }
+
 .wish-container::-webkit-scrollbar-thumb {
   background: #c9bfa5;
   border-radius: 4px;
 }
+
 .wish-container::-webkit-scrollbar-thumb:hover {
   background: #a89a76;
 }
@@ -601,8 +629,15 @@ section {
 }
 
 @keyframes wishSlideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .wish-avatar {
@@ -784,13 +819,20 @@ section {
 .intro-open-btn {
   width: 60px;
   height: auto;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
   animation: pulseBtn 2s ease-in-out infinite;
 }
 
 @keyframes pulseBtn {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .intro-hand {
@@ -801,13 +843,27 @@ section {
 }
 
 @keyframes tapHand {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .intro-date {
@@ -827,8 +883,15 @@ section {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Music Toggle Button */
@@ -841,7 +904,7 @@ section {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #c9bfa5;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 9998;
   cursor: pointer;
   display: flex;
@@ -871,5 +934,196 @@ section {
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
-}
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background: #c9bfa5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+
+  .intro-envelope {
+    width: 350px;
+  }
+
+  .page {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero {
+    height: 700px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .hero h1 {
+    font-size: 80px;
+  }
+
+  .hero .date {
+    font-size: 32px;
+  }
+
+  .env-card {
+    padding: 60px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .env-card .name {
+    font-size: 48px;
+  }
+
+  .thisday {
+    height: 400px;
+    padding-top: 40px;
+  }
+
+  .thisday h2 {
+    font-size: 64px;
+    padding-right: 60px;
+  }
+
+  .thisday .small {
+    padding-right: 60px;
+    font-size: 16px;
+  }
+
+  .info {
+    padding: 80px 40px;
+  }
+
+  .info .families {
+    font-size: 18px;
+    gap: 100px;
+    justify-content: center;
+  }
+
+  .info .name {
+    font-size: 72px;
+  }
+
+  .bigdate strong {
+    font-size: 72px;
+  }
+
+  .timeline {
+    height: 700px;
+    padding: 60px;
+  }
+
+  .timeline h2 {
+    font-size: 64px;
+  }
+
+  .timeline ul {
+    margin: 40px 0 0 20px;
+  }
+
+  .timeline li {
+    font-size: 18px;
+  }
+
+  .story {
+    padding: 80px 40px 60px;
+  }
+
+  .polaroids {
+    height: 500px;
+    margin: 60px auto;
+  }
+
+  .pol.left {
+    left: 20px;
+    width: 45%;
+  }
+
+  .pol.right {
+    right: 20px;
+    top: 120px;
+    width: 45%;
+  }
+
+  .calendar {
+    max-width: 500px;
+    margin: 40px auto 0;
+    font-size: 18px;
+    gap: 16px 0;
+  }
+
+  .calendar .today {
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+  }
+
+  .album {
+    padding: 60px 24px 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .rsvp {
+    padding: 80px 40px;
+  }
+
+  .rsvp form {
+    margin: 24px auto 0;
+  }
+
+  .gift-cards {
+    max-width: 600px;
+    margin: 16px auto 0;
+    gap: 20px;
+  }
+
+  .wishes {
+    padding: 60px 40px 80px;
+  }
+
+  .wish-container {
+    max-width: 600px;
+    margin: 24px auto;
+  }
+
+  .thanks {
+    height: 600px;
+    border-radius: 0 0 12px 12px;
+    padding: 40px 60px 60px;
+  }
+
+  .thanks h2 {
+    font-size: 64px;
+  }
+
+  .music-toggle {
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .pol.right figcaption {
+    top: 85%;
+  }
+
+  .pol.left figcaption {
+    top: 10%;
+  }
+}
