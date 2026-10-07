@@ -1,15 +1,49 @@
-// ===== Cấu hình: sửa ở đây =====
+// ===== Intro & Music =====
+var introOverlay = document.getElementById('intro-overlay');
+var bgMusic = document.getElementById('bg-music');
+var musicToggle = document.getElementById('music-toggle');
+var musicIcon = musicToggle.querySelector('.music-icon');
+
+// Ngăn cuộn trang khi chưa mở thiệp
+document.body.style.overflow = 'hidden';
+
+introOverlay.addEventListener('click', function() {
+  introOverlay.classList.add('hidden');
+  document.body.style.overflow = ''; // Cho phép cuộn lại
+  bgMusic.play().catch(function(e) { console.log('Autoplay prevented'); });
+});
+
+musicToggle.addEventListener('click', function() {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    musicIcon.classList.remove('muted');
+    musicIcon.classList.add('playing');
+  } else {
+    bgMusic.pause();
+    musicIcon.classList.remove('playing');
+    musicIcon.classList.add('muted');
+  }
+});
+
+new WOW({
+  animateClass: 'animate__animated',
+  offset: 60,
+  mobile: true,
+  live: true
+}).init();
+
+const SUPABASE_URL = 'https://mygmykhrnnzkbsrslzix.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_JOL5cskxiNIm3Bt7PZMzoA_TTCUGPVf';
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 var CONFIG = {
-  weddingDate: '2026-11-16T14:30:00+07:00',
-  // Dán URL Google Apps Script (Web app) để nhận RSVP vào Google Sheet. Để trống = chỉ lưu tạm trên máy khách.
-  rsvpEndpoint: '',
-  sampleWishes: [
-    { name: 'Bạn A', message: 'Chúc hai bạn trăm năm hạnh phúc!' },
-    { name: 'Bạn B', message: 'Chúc mừng ngày trọng đại của hai bạn!' }
-  ]
+  weddingDate: '2026-11-16T14:30:00+07:00'
 };
 
-// ===== Đếm ngược =====
+var WISH_PAGE_SIZE = 5;
+var allWishes = [];
+var shownCount = 0;
+
 (function () {
   var target = new Date(CONFIG.weddingDate).getTime();
   var ids = { d: 'cd-d', h: 'cd-h', m: 'cd-m', s: 'cd-s' };
@@ -26,7 +60,6 @@ var CONFIG = {
   setInterval(tick, 1000);
 })();
 
-// ===== Lịch tháng cưới (tuần bắt đầu từ thứ Hai) =====
 (function () {
   var d = new Date(CONFIG.weddingDate);
   var y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
@@ -38,43 +71,123 @@ var CONFIG = {
   var total = new Date(y, m + 1, 0).getDate();
   for (var i = 0; i < offset; i++) box.insertAdjacentHTML('beforeend', '<div></div>');
   for (var n = 1; n <= total; n++) {
-    box.insertAdjacentHTML('beforeend', n === day ? '<div class="today">' + n + '</div>' : '<div>' + n + '</div>');
+    box.insertAdjacentHTML('beforeend', n === day
+      ? '<div class="today">' + n + '</div>'
+      : '<div>' + n + '</div>');
   }
 })();
 
-// ===== Lời chúc =====
 var wishList = document.getElementById('wish-list');
+var wishFooter = document.getElementById('wish-footer');
+var wishCountText = document.getElementById('wish-count-text');
+var wishLoadBtn = document.getElementById('wish-load-btn');
+
 function esc(t) {
   var p = document.createElement('p');
   p.textContent = t;
   return p.innerHTML;
 }
-function addWish(w, top) {
-  var html = '<li><b>' + esc(w.name) + '</b>' + esc(w.message) + '</li>';
-  wishList.insertAdjacentHTML(top ? 'afterbegin' : 'beforeend', html);
-}
-CONFIG.sampleWishes.forEach(function (w) { addWish(w, false); });
 
-// ===== Form RSVP =====
-document.getElementById('rsvp-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var form = e.target;
-  var status = document.getElementById('status');
-  var data = {};
-  new FormData(form).forEach(function (v, k) { data[k] = v; });
-  var done = function () {
-    if (data.message) addWish({ name: data.name, message: data.message }, true);
-    status.textContent = 'Cảm ơn bạn đã xác nhận!';
-    form.reset();
-  };
-  if (!CONFIG.rsvpEndpoint) { done(); return; }
-  status.textContent = 'Đang gửi...';
-  fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
-    .then(done)
-    .catch(function () { status.textContent = 'Gửi chưa được, bạn thử lại nhé.'; });
+function renderWishes() {
+  wishList.innerHTML = '';
+  var visible = allWishes.slice(0, shownCount);
+  visible.forEach(function (w, idx) {
+    var li = document.createElement('li');
+    li.className = 'wish-item';
+    li.style.animationDelay = (idx * 0.06) + 's';
+    li.innerHTML =
+      '<span class="wish-avatar">' + esc(w.name.charAt(0).toUpperCase()) + '</span>' +
+      '<div class="wish-body">' +
+        '<b>' + esc(w.name) + '</b>' +
+        '<p>' + esc(w.message || '') + '</p>' +
+        '<time>' + formatDate(w.created_at) + '</time>' +
+      '</div>';
+    wishList.appendChild(li);
+  });
+
+  var remaining = allWishes.length - shownCount;
+  if (allWishes.length > WISH_PAGE_SIZE) {
+    wishFooter.hidden = false;
+    wishCountText.textContent = remaining > 0
+      ? 'Đang xem ' + shownCount + ' / ' + allWishes.length + ' lời chúc'
+      : 'Đã xem tất cả ' + allWishes.length + ' lời chúc ♥';
+    wishLoadBtn.hidden = remaining <= 0;
+  } else {
+    wishFooter.hidden = true;
+  }
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  var d = new Date(iso);
+  return d.getDate().toString().padStart(2, '0') + '/' +
+    (d.getMonth() + 1).toString().padStart(2, '0') + '/' +
+    d.getFullYear();
+}
+
+async function loadWishes() {
+  try {
+    var { data, error } = await db
+      .from('wishes')
+      .select('id, name, message, side, created_at')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    allWishes = data || [];
+    shownCount = Math.min(WISH_PAGE_SIZE, allWishes.length);
+    renderWishes();
+  } catch (err) {
+    console.error('Lỗi tải lời chúc:', err);
+  }
+}
+
+wishLoadBtn.addEventListener('click', function () {
+  shownCount = Math.min(shownCount + WISH_PAGE_SIZE, allWishes.length);
+  renderWishes();
+  wishList.lastElementChild && wishList.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
 
-// ===== Quà mừng cưới =====
+loadWishes();
+
+db.channel('wishes-channel')
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'wishes' }, function (payload) {
+    allWishes.unshift(payload.new);
+    if (shownCount < allWishes.length) shownCount++;
+    renderWishes();
+  })
+  .subscribe();
+
+document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  var form = e.target;
+  var statusEl = document.getElementById('status');
+  var data = {};
+  new FormData(form).forEach(function (v, k) { data[k] = v; });
+
+  statusEl.textContent = 'Đang gửi...';
+  statusEl.className = 'status sending';
+
+  try {
+    var payload = {
+      name: data.name,
+      message: data.message || null
+    };
+
+    var { error } = await db.from('wishes').insert([payload]);
+    if (error) throw error;
+
+    statusEl.textContent = '✓ Cảm ơn bạn đã gửi lời chúc!';
+    statusEl.className = 'status success';
+    form.reset();
+
+    setTimeout(loadWishes, 600);
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = '✗ Gửi chưa được, bạn thử lại nhé.';
+    statusEl.className = 'status error';
+  }
+});
+
 document.getElementById('gift-btn').addEventListener('click', function () {
   var box = document.getElementById('gift-box');
   box.hidden = !box.hidden;
