@@ -522,7 +522,7 @@ section {
 .gift-qr {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
   border: 1px solid #ece8e0;
   display: block;
