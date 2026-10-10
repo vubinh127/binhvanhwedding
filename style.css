@@ -150,14 +150,13 @@ section {
 .thisday h2 {
   position: relative;
   font-size: 44px;
-  text-align: right;
-  padding-right: 24px;
+  line-height: 50px;
+  text-align: center;
 }
 
 .thisday .small {
   position: relative;
-  text-align: right;
-  padding-right: 24px;
+  text-align: center;
 }
 
 /* Info */
@@ -169,7 +168,8 @@ section {
   display: flex;
   justify-content: space-around;
   font-size: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
+  gap: 10px;
 }
 
 .families h3 {
@@ -177,6 +177,10 @@ section {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 4px;
+}
+
+.family-address {
+  font-size: 10px;
 }
 
 .invite {
@@ -225,6 +229,12 @@ section {
 
 .venue-label {
   margin-top: 24px;
+}
+
+
+.venue-location {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .venue {
@@ -289,20 +299,23 @@ section {
   padding: 56px 28px 40px;
 }
 
-.mono {
-  font-family: "Puppies Play", cursive;
-  font-size: 64px;
-  line-height: 1;
+.mono-image {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
 }
 
-.mono i {
-  font-style: normal;
-  margin-left: -10px;
+.mono-image img {
+  display: block;
+  width: 100%;
+  filter: brightness(0) saturate(100%) invert(79%) sepia(10%) saturate(500%) hue-rotate(2deg) brightness(88%) contrast(85%);
+  height: auto;
 }
 
 .quote {
   font-size: 14px;
-  margin: 18px 0;
+  margin: 0 0 10px;
 }
 
 .polaroids {
@@ -425,6 +438,10 @@ section {
 
 .grid .photo {
   aspect-ratio: 3/4;
+}
+
+.grid .photo:last-child {
+  display: none;
 }
 
 .grid .wide {
@@ -973,7 +990,7 @@ section {
   }
 
   .hero {
-    height: 700px;
+    height: 870px;
     border-radius: 12px 12px 0 0;
   }
 
@@ -997,16 +1014,15 @@ section {
 
   .thisday {
     height: 400px;
-    padding-top: 40px;
+    padding-top: 20px;
   }
 
   .thisday h2 {
-    font-size: 64px;
-    padding-right: 60px;
+    font-size: 56px;
+    line-height: 70px;
   }
 
   .thisday .small {
-    padding-right: 60px;
     font-size: 16px;
   }
 
@@ -1089,6 +1105,10 @@ section {
     margin: 0 auto;
   }
 
+  .grid .photo:last-child {
+    display: block;
+  }
+
   .rsvp {
     padding: 80px 40px;
   }
@@ -1113,7 +1133,7 @@ section {
   }
 
   .thanks {
-    height: 600px;
+    height: 700px;
     border-radius: 0 0 12px 12px;
     padding: 40px 60px 60px;
   }
@@ -1133,7 +1153,7 @@ section {
   .pol figcaption {
     font-size: 30px;
   }
-  
+
   .pol.right figcaption {
     top: 85%;
     right: 80%;
@@ -1146,11 +1166,11 @@ section {
 }
 
 .swal2-top-end {
-  width:240px !important;
+  width: 240px !important;
 }
 
 .swal2-toast div:where(.swal2-html-container),
 .swal2-toast h2:where(.swal2-title) {
-  margin: 3px 3px 0!important;
+  margin: 3px 3px 0 !important;
   font-size: 14px !important;
 }
