@@ -1085,6 +1085,18 @@ section {
     font-size: 32px;
   }
 
+  .invite {
+    font-size: 22px;
+  }
+
+  .wishes h2 {
+    font-size: 30px;
+  }
+
+  .script {
+    font-size: 24px;
+  }
+
   .env-card {
     padding: 60px 40px;
     max-width: 600px;
