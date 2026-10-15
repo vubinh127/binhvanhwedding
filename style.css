@@ -478,7 +478,7 @@ section {
   max-width: none;
   max-height: none;
   margin: auto;
-  margin-top: max(env(safe-area-inset-top, 0px), 20px);
+  margin-top: max(env(safe-area-inset-top, 0px), 56px);
   padding: 0;
   overflow: visible;
   border: 0;
@@ -508,9 +508,9 @@ section {
 }
 
 .photo-viewer-close {
-  position: fixed;
-  top: calc(env(safe-area-inset-top, 0px) + 12px);
-  right: 16px;
+  position: absolute;
+  top: -18px;
+  right: 2px;
   z-index: 2;
   width: 44px;
   height: 44px;
