@@ -472,11 +472,13 @@ section {
 
 .photo-viewer {
   position: fixed;
+  inset: 0;
   width: min(96vw, 1100px);
-  height: min(92vh, 900px);
+  height: min(80vh, 900px);
   max-width: none;
   max-height: none;
   margin: auto;
+  margin-top: max(env(safe-area-inset-top, 0px), 20px);
   padding: 0;
   overflow: visible;
   border: 0;
@@ -506,19 +508,24 @@ section {
 }
 
 .photo-viewer-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  right: 16px;
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.65);
   color: #fff;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .grid .photo:last-child {
