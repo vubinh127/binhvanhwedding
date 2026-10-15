@@ -150,7 +150,7 @@
         </section>
 
         <section class="timeline photo">
-            <h2 class="script wow animate__animated animate__fadeInDown" data-wow-duration="1s">Timeline</h2>
+            <h2 class="script wow animate__animated animate__fadeInDown" data-wow-duration="1s">Ngày chung đôi</h2>
             <ul>
                 <li class="wow animate__animated animate__fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.2s">
                     <b>16:30 (16/11)</b>Lễ thành hôn
@@ -170,13 +170,13 @@
             <div class="polaroids">
                 <div class="wow animate__animated animate__fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
                     <figure class="pol left">
-                        <div class="photo"><img src="images/bride.JPG" alt="Cô dâu Vân Anh"></div>
+                        <div class="photo"><img src="images/bride.jpg" alt="Cô dâu Vân Anh"></div>
                         <figcaption><span class="script">Cô dâu</span>Vân Anh</figcaption>
                     </figure>
                 </div>
                 <div class="wow animate__animated animate__fadeInRight" data-wow-duration="1s" data-wow-delay="0.4s">
                     <figure class="pol right">
-                        <div class="photo"><img src="images/groom.JPG" alt="Chú rể Vũ Bình"></div>
+                        <div class="photo"><img src="images/groom.jpg" alt="Chú rể Vũ Bình"></div>
                         <figcaption><span class="script">Chú rể</span>Vũ Bình</figcaption>
                     </figure>
                 </div>
@@ -197,23 +197,41 @@
             </p>
             <div class="grid">
                 <div class="photo wide wow animate__animated animate__zoomIn" data-wow-duration="0.8s"
-                    data-wow-delay="0.1s"><img src="images/DCV03078.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.1s"><img src="images/DCV03078.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo tall wow animate__animated animate__fadeInRight" data-wow-duration="0.8s"
-                    data-wow-delay="0.2s"><img src="images/DCV04209.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.2s"><img src="images/DCV04209.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
-                    data-wow-delay="0.25s"><img src="images/DCV03811.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.25s"><img src="images/DCV03811.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
-                    data-wow-delay="0.3s"><img src="images/DCV03101.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.3s"><img src="images/DCV03594.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wide wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
-                    data-wow-delay="0.35s"><img src="images/DCV04376.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.35s"><img src="images/DCV04376.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
-                    data-wow-delay="0.4s"><img src="images/DCV03431.JPG" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
+                    data-wow-delay="0.4s"><img src="images/DCV03431.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
                     data-wow-delay="0.45s"><img src="images/DCV04572.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
                 <div class="photo wow animate__animated animate__fadeInUp" data-wow-duration="0.7s"
                     data-wow-delay="0.5s"><img src="images/DCV02842.jpg" alt="Ảnh cưới Vũ Bình và Vân Anh"></div>
             </div>
+
+            <div class="video-btn-wrap">
+                <button class="video-shake-btn" id="video-btn" type="button" onclick="openVideoModal()">
+                    <span>Video giật giật</span>
+                </button>
+            </div>
+
         </section>
+
+        <div class="video-modal" id="video-modal" aria-modal="true" role="dialog" aria-label="Video cưới">
+            <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
+            <div class="video-modal-inner">
+                <button class="video-modal-close" type="button" onclick="closeVideoModal()" aria-label="Đóng video">✕</button>
+                <video class="video-player" id="wedding-video" controls playsinline>
+                    <source src="images/capcut.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+        </div>
 
         <section class="rsvp">
             <p class="invite wow animate__animated animate__fadeInUp" data-wow-duration="0.8s">Hãy gửi lời chúc đến với

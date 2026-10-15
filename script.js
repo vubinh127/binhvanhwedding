@@ -248,3 +248,35 @@ document.addEventListener('keydown', function (e) {
     });
   }
 });
+
+
+function openVideoModal() {
+  var modal = document.getElementById('video-modal');
+  var video = document.getElementById('wedding-video');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (bgMusic && !bgMusic.paused) {
+    bgMusic._pausedForVideo = true;
+    bgMusic.pause();
+  }
+  video.play().catch(function () {});
+}
+
+function closeVideoModal() {
+  var modal = document.getElementById('video-modal');
+  var video = document.getElementById('wedding-video');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  video.pause();
+  video.currentTime = 0;
+  if (bgMusic && bgMusic._pausedForVideo) {
+    bgMusic._pausedForVideo = false;
+    bgMusic.play().catch(function () {});
+  }
+}
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    var modal = document.getElementById('video-modal');
+    if (modal && modal.classList.contains('open')) closeVideoModal();
+  }
+});
