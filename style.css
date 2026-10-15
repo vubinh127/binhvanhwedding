@@ -67,7 +67,7 @@ section {
   align-items: flex-end;
   justify-content: center;
   color: #fff;
-  background-image: url('./images/DCV04618.jpg');
+  background-image: url('./images/DCV04618.webp');
 }
 
 .hero::before,
@@ -152,7 +152,7 @@ section {
   height: 280px;
   color: #fff;
   padding-top: 18px;
-  background-image: url('./images/DCV04134.JPG');
+  background-image: url('./images/DCV04134.webp');
 }
 
 .thisday h2 {
@@ -274,7 +274,7 @@ section {
   color: #fff;
   text-align: left;
   padding: 24px;
-  background-image: url('./images/DCV04064.jpg');
+  background-image: url('./images/DCV04064.webp');
 }
 
 .timeline::before {
@@ -836,7 +836,7 @@ section {
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px 28px 40px;
-  background-image: url('./images/DCV04143.JPG');
+  background-image: url('./images/DCV04143.webp');
   background-position: bottom;
 }
 
