@@ -3,17 +3,11 @@ var bgMusic = document.getElementById('bg-music');
 var musicToggle = document.getElementById('music-toggle');
 var musicIcon = musicToggle.querySelector('.music-icon');
 
-if (localStorage.getItem('introOpened')) {
-  introOverlay.classList.add('hidden');
-  document.body.style.overflow = '';
-} else {
-  document.body.style.overflow = 'hidden';
-}
+document.body.style.overflow = 'hidden';
 
 introOverlay.addEventListener('click', function () {
   introOverlay.classList.add('hidden');
   document.body.style.overflow = '';
-  localStorage.setItem('introOpened', 'true');
   bgMusic.play().catch(function (e) { console.log('Autoplay prevented'); });
 });
 
