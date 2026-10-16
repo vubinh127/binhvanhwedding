@@ -401,6 +401,8 @@ section {
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  align-items: center;
   gap: 10px 0;
   margin-top: 12px;
   font-size: 14px;
@@ -413,12 +415,11 @@ section {
 }
 
 .calendar .today {
-  border: 1px solid #a89a76;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  line-height: 28px;
-  margin: 0 auto;
+    width: 36px;
+    height: 36px;
+    line-height: 40px;
+    margin: 0 auto;
+    background: url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2 0 3.6 1.1 5.3 3 1.7-1.9 3.3-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z' fill='none' stroke='%23a89a76' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E) center / contain no-repeat;
 }
 
 /* Album */
