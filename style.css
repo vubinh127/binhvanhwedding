@@ -1266,6 +1266,10 @@ section {
     top: 10%;
     left: 80%;
   }
+  
+  .hidden-pc {
+    display: none;
+  }
 }
 
 .swal2-top-end {
