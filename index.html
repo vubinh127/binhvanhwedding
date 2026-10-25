@@ -235,12 +235,25 @@
 
         </section>
 
-        <div class="video-modal" id="video-modal" aria-modal="true" role="dialog" aria-label="Video cưới">
+        <!-- Modal video 1 -->
+        <div class="video-modal" id="video-modal-1" aria-modal="true" role="dialog" aria-label="Video cưới">
             <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
             <div class="video-modal-inner">
                 <button class="video-modal-close" type="button" onclick="closeVideoModal()" aria-label="Đóng video">✕</button>
-                <video class="video-player" id="wedding-video" controls playsinline>
+                <video class="video-player" id="wedding-video-1" controls playsinline>
                     <source src="/images/capcut.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+        </div>
+
+        <!-- Modal video 2 -->
+        <div class="video-modal" id="video-modal-2" aria-modal="true" role="dialog" aria-label="Video cưới">
+            <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
+            <div class="video-modal-inner">
+                <button class="video-modal-close" type="button" onclick="closeVideoModal()" aria-label="Đóng video">✕</button>
+                <video class="video-player" id="wedding-video-2" controls playsinline>
+                    <source src="/images/capcut_2.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ video.
                 </video>
             </div>
