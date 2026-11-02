@@ -245,8 +245,10 @@ document.addEventListener('keydown', function (e) {
 
 
 function openVideoModal() {
-  var modal = document.getElementById('video-modal');
-  var video = document.getElementById('wedding-video');
+  var idx = Math.random() < 0.5 ? 1 : 2;
+  var modal = document.getElementById('video-modal-' + idx);
+  var video = document.getElementById('wedding-video-' + idx);
+
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   if (bgMusic && !bgMusic.paused) {
@@ -257,20 +259,21 @@ function openVideoModal() {
 }
 
 function closeVideoModal() {
-  var modal = document.getElementById('video-modal');
-  var video = document.getElementById('wedding-video');
-  modal.classList.remove('open');
+  [1, 2].forEach(function (idx) {
+    var modal = document.getElementById('video-modal-' + idx);
+    var video = document.getElementById('wedding-video-' + idx);
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
   document.body.style.overflow = '';
-  video.pause();
-  video.currentTime = 0;
   if (bgMusic && bgMusic._pausedForVideo) {
     bgMusic._pausedForVideo = false;
     bgMusic.play().catch(function () {});
   }
 }
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    var modal = document.getElementById('video-modal');
-    if (modal && modal.classList.contains('open')) closeVideoModal();
-  }
+  if (e.key === 'Escape') closeVideoModal();
 });
