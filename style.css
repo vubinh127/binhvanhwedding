@@ -502,14 +502,12 @@ section {
 
 .photo-viewer {
   position: fixed;
-  inset: 0;
+  inset: calc(env(safe-area-inset-top, 0px) + 56px) 0 calc(env(safe-area-inset-bottom, 0px) + 48px);
   width: min(96vw, 1100px);
-  height: min(calc(100vh - 130px), 900px);
-  height: min(calc(100dvh - 130px), 900px);
+  height: auto;
   max-width: none;
   max-height: none;
-  margin: auto;
-  margin-top: max(env(safe-area-inset-top, 0px), 56px);
+  margin: 0 auto;
   padding: 0;
   overflow: visible;
   border: 0;
@@ -1475,4 +1473,17 @@ section {
 .video-modal-close:hover {
   background: rgba(201, 151, 58, 0.85);
   transform: rotate(90deg) scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .photo-viewer-close {
+    top: -48px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+
+  .photo-viewer-close-arrow {
+    display: none;
+  }
 }
