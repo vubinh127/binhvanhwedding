@@ -497,6 +497,55 @@ section {
   object-fit: contain;
 }
 
+.photo-viewer-image {
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity 0.15s ease;
+}
+
+.photo-viewer-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  padding: 0 0 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.photo-viewer-prev { left: 8px; }
+.photo-viewer-next { right: 8px; }
+
+@media (min-width: 1000px) {
+  .photo-viewer-prev { left: -64px; }
+  .photo-viewer-next { right: -64px; }
+}
+
+.photo-viewer-counter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -34px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
 .photo-viewer-close-arrow {
   position: absolute;
   top: -20px;
