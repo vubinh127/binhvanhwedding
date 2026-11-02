@@ -504,7 +504,8 @@ section {
   position: fixed;
   inset: 0;
   width: min(96vw, 1100px);
-  height: min(80vh, 900px);
+  height: min(calc(100vh - 130px), 900px);
+  height: min(calc(100dvh - 130px), 900px);
   max-width: none;
   max-height: none;
   margin: auto;
