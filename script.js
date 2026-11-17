@@ -42,20 +42,56 @@ var WISH_PAGE_SIZE = 5;
 var allWishes = [];
 var shownCount = 0;
 
+// Countdown + chuyển sang lời cảm ơn khi đám cưới đã diễn ra
 (function () {
   var target = new Date(CONFIG.weddingDate).getTime();
   var ids = { d: 'cd-d', h: 'cd-h', m: 'cd-m', s: 'cd-s' };
+  var timer = null;
+  var done = false;
+
   function pad(n) { return String(n).padStart(2, '0'); }
+
+  function showThanks() {
+    if (done) return;
+    done = true;
+
+    // 1. Màn hình mở thiệp
+    var invite = document.querySelector('.intro-invite');
+    if (invite) invite.textContent = 'Trân Trọng Cảm Ơn';
+
+    // 2. Khối đếm giờ -> lời cảm ơn
+    var intro = document.getElementById('env-intro');
+    var when = document.getElementById('env-when');
+    var cd = document.getElementById('countdown');
+
+    if (intro) intro.textContent = 'Cảm ơn bạn đã đến chung vui cùng';
+    if (when) when.textContent = 'Lễ thành hôn đã diễn ra ngày 16.11.2026';
+
+    if (cd) {
+      cd.style.display = 'none'; // dùng style.display vì CSS có thể đang set display:flex
+      var msg = document.createElement('p');
+      msg.className = 'small';
+      msg.textContent = 'Sự hiện diện của bạn là món quà ý nghĩa nhất với chúng mình 💍';
+      cd.parentNode.appendChild(msg);
+    }
+  }
+
   function tick() {
-    var diff = Math.max(0, target - Date.now());
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      showThanks();
+      if (timer) clearInterval(timer);
+      return;
+    }
     var s = Math.floor(diff / 1000);
     document.getElementById(ids.d).textContent = pad(Math.floor(s / 86400));
     document.getElementById(ids.h).textContent = pad(Math.floor(s % 86400 / 3600));
     document.getElementById(ids.m).textContent = pad(Math.floor(s % 3600 / 60));
     document.getElementById(ids.s).textContent = pad(s % 60);
   }
+
   tick();
-  setInterval(tick, 1000);
+  if (!done) timer = setInterval(tick, 1000);
 })();
 
 (function () {
